@@ -207,4 +207,4 @@ class AboutAttributeAccess(Koan):
     def test_in_this_case_private_attributes_remain_unmangled(self):
         setter = self.ScarySetter()
 
-        self.assertEqual(__, setter._num_of_private_coconuts)
+        self.assertEqual(True, setter._num_of_private_coconuts)
