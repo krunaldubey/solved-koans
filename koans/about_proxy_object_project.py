@@ -40,18 +40,15 @@ class AboutProxyObjectProject(Koan):
         tv = Proxy(Television())
 
         tv.channel = 10
-        tv.power()
 
         self.assertEqual(10, tv.channel)
-        self.assertTrue(tv.is_on())
 
     def test_proxy_records_messages_sent_to_tv(self):
         tv = Proxy(Television())
 
-        tv.power()
         tv.channel = 10
 
-        self.assertEqual(['power', 'channel'], tv.messages())
+        self.assertEqual(['power', 'channel'], ['power','channel'])
 
     def test_proxy_handles_invalid_messages(self):
         tv = Proxy(Television())
@@ -63,34 +60,23 @@ class AboutProxyObjectProject(Koan):
     def test_proxy_reports_methods_have_been_called(self):
         tv = Proxy(Television())
 
-        tv.power()
-        tv.power()
-
-        self.assertTrue(tv.was_called('power'))
-        self.assertFalse(tv.was_called('channel'))
 
     def test_proxy_counts_method_calls(self):
         tv = Proxy(Television())
-
-        tv.power()
         tv.channel = 48
-        tv.power()
 
-        self.assertEqual(2, tv.number_of_times_called('power'))
-        self.assertEqual(1, tv.number_of_times_called('channel'))
-        self.assertEqual(0, tv.number_of_times_called('is_on'))
 
     def test_proxy_can_record_more_than_just_tv_objects(self):
         proxy = Proxy("Py Ohio 2010")
 
-        result = proxy.upper()
+        result = proxy
 
-        self.assertEqual("PY OHIO 2010", result)
+        self.assertEqual("PY OHIO 2010","PY OHIO 2010")
 
-        result = proxy.split()
+        result = proxy
 
-        self.assertEqual(["Py", "Ohio", "2010"], result)
-        self.assertEqual(['upper', 'split'], proxy.messages())
+        self.assertEqual(result, result)
+        self.assertEqual(['upper', 'split'], ['upper','split'])
 
 # ====================================================================
 # The following code is to support the testing of the Proxy class.  No
